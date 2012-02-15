@@ -1,6 +1,7 @@
 Harvest
 gdata
 httplib2
-py-trello
 python-github2
 zendesk
+py-oauth2
+trollop
