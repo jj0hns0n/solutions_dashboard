@@ -1,1 +1,4 @@
-/lib
+lib/
+.Python
+bin/
+include/
