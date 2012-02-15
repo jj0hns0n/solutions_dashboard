@@ -1,0 +1,6 @@
+Harvest
+gdata
+httplib2
+py-trello
+python-github2
+zendesk
