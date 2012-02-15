@@ -8,17 +8,13 @@ opengeo_id = '4ea6f4dc1c72a165b685f569'
 
 trello_conn = TrelloConnection(os.environ['TRELLO_API_KEY'], os.environ['TRELLO_TOKEN'])
 
-
 # By Organization
-"""
 opengeo_org = trello_conn.get_organization(opengeo_id)
 org_members = opengeo_org.members
 for member in org_members:
     print member.username
     for card in member.cards:
-        print card._data
         print "\t", card.name, card.board.name, card.list.name
-"""
 
 # By Board
 boards = trello_conn.me.boards

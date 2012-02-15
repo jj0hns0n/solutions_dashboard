@@ -1,21 +1,22 @@
+import os
 from datetime import datetime, timedelta
 from harvest import Harvest, HarvestError
 from spreadsheets_util import *
 
-h = Harvest( 'https://yourcompany.harvestapp.com', 'youremail@server.com', 'sikritpassword' )
+h = Harvest( os.environ['HARVEST_URL'], os.environ['HARVEST_EMAIL'], os.environ['HARVEST_PASSWORD'] )
 
 end = datetime.today()
-start = end - timedelta(720)
+start = end - timedelta(720) # 2 Years in the past
 
 gd_client = gdata.spreadsheet.service.SpreadsheetsService()
-gd_client.email = 'youruser@googleappsdomain.com'
-gd_client.password = 'anothersikritpassword'
+gd_client.email = os.environ['GDOCS_EMAIL']
+gd_client.password = os.environ['GDOCS_PASSWORD']
 gd_client.source = 'opengeo-solutions_dashboard-1'
 gd_client.ProgrammaticLogin()
 #gd_client.debug = True
 
-key = ''
-worksheet = ''
+key = '0AgQ7XY0Atfx5dERpQ2VDcEtGUVpOQVRvVng4Tm1DMGc'
+worksheet = 'od6'
 
 def update_project(row, name, client, total, billable, non_billable):
     CellsUpdateAction(gd_client, key, worksheet, row, 1, name)
@@ -50,5 +51,5 @@ for project in h.projects():
     for k,v in tasks.iteritems():
         print k, v['hours'], v['budget']
     
-    update_project(project_count, project.name, str(project.client.name), total, billable, non_billable)
+    update_project(project_count+1, project.name, str(project.client.name), total, billable, non_billable)
     project_count += 1

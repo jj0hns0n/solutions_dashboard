@@ -1,13 +1,14 @@
+import os
 import csv
 from github2.client import Github
 import httplib2
 
-#httplib2.Http(disable_ssl_certificate_validation=True)
+httplib2.Http(disable_ssl_certificate_validation=True)
 
 # api settings for github
-git_username = ''
-git_api_token = ''
-git_repo = '' # of form user/repo
+git_username = os.environ['GIT_USERNAME'] 
+git_api_token = os.environ['GIT_API_TOKEN'] 
+git_repo = os.environ['GIT_REPO'] # of form user/repo
 
 # csv name
 csv_name = "git_hub_issues.csv"
@@ -17,7 +18,7 @@ def run_csv():
     Export github issues into a csv format
     """
     output_csv = csv.writer(open(csv_name, 'wb'), delimiter=',')
-    github = Github()
+    github = Github(git_username, git_api_token)
 
     # csv headers
     headers = [

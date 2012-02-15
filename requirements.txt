@@ -1,7 +1,7 @@
-Harvest
+-e git+https://github.com/lann/Harvest.git#egg=harvest
 gdata
 httplib2
-python-github2
+-e git+https://github.com/ask/python-github2.git#egg=python-github2
 zendesk
-py-oauth2
-trollop
+#py-oauth2
+-e hg+https://bitbucket.org/ortelius/trollop#egg=trollop
